@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CircleCalculator</string>
+    <string name="circle_info">Calculates the area, circumference, radius or diameter of circle.</string>
+
+    <string-array name="Drop">
+        <item>Radius (r)</item>
+        <item>Diameter (d)</item>
+        <item>Circumference (L)</item>
+        <item>Area (S)</item>
+    </string-array>
+</resources>
