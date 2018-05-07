@@ -19,7 +19,7 @@ class CircleCalculatorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_circle_calculator)
-
+        
         SelectTypeMethodToCalculate()
 
         btnClearAll.setOnClickListener { inputValue.text = null }
@@ -68,6 +68,9 @@ class CircleCalculatorActivity : AppCompatActivity() {
                     var resultCircumference = dcm.format(2 * Math.PI * value)
                     var resultDiameter = dcm.format(value * 2)
                     var totalResult = resultCircumference.toString() + "\n" + resultDiameter.toString() + "\n" + resultArea.toString()
+
+
+                    outTextCalculation.text = circumferenceName() + "\n" + diameterName() + "\n" + areaName();
                     resultCalculation.text = totalResult
                 }
             }
@@ -78,6 +81,11 @@ class CircleCalculatorActivity : AppCompatActivity() {
         }
 
     }
+
+    fun radiusName():String = getString(R.string.radiusCircle)
+    fun circumferenceName():String = getString(R.string.circumferenceCircle)
+    fun diameterName():String = getString(R.string.diameterCircle)
+    fun areaName():String = getString(R.string.areaCircle)
 
 
 }

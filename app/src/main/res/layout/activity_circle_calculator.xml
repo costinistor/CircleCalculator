@@ -116,7 +116,7 @@
                     android:layout_marginRight="7dp"
                     android:background="@drawable/z_btn_grey"
                     android:text="Save"
-                    android:textColor="@android:color/background_light" />
+                    android:textColor="@color/colorAccent" />
 
                 <Button
                     android:id="@+id/btnClearAll"
@@ -124,7 +124,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/z_btn_grey"
                     android:text="Clear"
-                    android:textColor="@android:color/background_light" />
+                    android:textColor="@color/colorAccent" />
 
                 <Space
                     android:layout_width="0dp"
@@ -139,7 +139,7 @@
                     android:paddingLeft="18dp"
                     android:paddingRight="18dp"
                     android:text="Calculate"
-                    android:textColor="@android:color/background_light" />
+                    android:textColor="@color/colorAccent" />
 
             </LinearLayout>
 
@@ -190,17 +190,19 @@
                     android:paddingBottom="4dp"
                     android:layout_marginTop="5dp"
                     android:textColor="#151d25" />
+
                 <Button
-                    android:text="@string/clearSaved"
                     android:id="@+id/btnClearSaved"
                     android:layout_width="wrap_content"
                     android:layout_height="44dp"
                     android:layout_weight="30"
+                    android:background="@drawable/z_btn_grey"
+                    android:paddingBottom="0dp"
                     android:paddingLeft="0dp"
                     android:paddingRight="0dp"
                     android:paddingTop="0dp"
-                    android:paddingBottom="0dp"
-                    android:background="@drawable/z_btn_grey" />
+                    android:text="@string/clearSaved"
+                    android:textColor="@color/colorAccent" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"
@@ -209,14 +211,15 @@
                 android:padding="1dp"
                 android:background="@drawable/bg_spinner"
                 android:layout_marginBottom="15dp">
+
                 <TextView
                     android:id="@+id/resultSaved"
-                    android:text="Side length = 24 cm"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="18dp"
                     android:padding="6dp"
-                    android:textColor="#000" />
+                    android:text="Side length = 24 cm"
+                    android:textColor="#3b3b34"
+                    android:textSize="18dp" />
             </LinearLayout>
 
         </LinearLayout>
