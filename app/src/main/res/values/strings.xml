@@ -2,10 +2,45 @@
     <string name="app_name">CircleCalculator</string>
     <string name="circle_info">Calculates the area, circumference, radius or diameter of circle.</string>
 
+    <!--    Main menu     -->
+    <string name="nameStairCalculator">Circle Calculator</string>
+    <string name="nameSettings">Settings</string>
+    <string name="nameAbout">About</string>
+    <string name="nameExit">Exit</string>
+
+    <!--    Universal     -->
+    <string name="ButonSave">Save</string>
+    <string name="ButonClear">Clear</string>
+    <string name="ButonCalculate">Calculate</string>
+    <string name="LastSaved">Last saved</string>
+    <string name="clearSaved">Clear saved</string>
+
+    <!--    Settings     -->
+    <string name="titleSettings">Settings</string>
+    <string name="Units">Decimal places</string>
+    <string name="zero">0 - Zero</string>
+    <string name="one">1 - One</string>
+    <string name="two">2 - Two</string>
+    <string name="three">3 - Three</string>
+    <string name="four">4 - Four</string>
+    <string name="five">5 - Five</string>
+    <string name="six">6 - Six</string>
+
+
     <string-array name="Drop">
         <item>Radius (r)</item>
         <item>Diameter (d)</item>
         <item>Circumference (L)</item>
         <item>Area (S)</item>
     </string-array>
+
+    <!--    Circle elements     -->
+    <string name="selectElement">Select a method</string>
+    <string name="radiusCircle">Radius (r)</string>
+    <string name="diameterCircle">Diameter (d)</string>
+    <string name="circumferenceCircle">Circumference (L)</string>
+    <string name="areaCircle">Area (S)</string>
+
+    <string name="isoscelRightTriangleDesc">Calculates the area, circumference, radius or diameter of a circle.</string>
+
 </resources>

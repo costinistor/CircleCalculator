@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#8d876e"
     tools:context="com.example.costi.circlecalculator.CircleCalculatorActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,7 +51,8 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_weight="1"
-                android:text="@string/circle_info" />
+                android:text="@string/circle_info"
+                android:textColor="#3b3b34" />
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -71,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Select a method"
-                android:textColor="@android:color/holo_purple" />
+                android:textColor="#352356" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -93,7 +90,7 @@
                     android:ems="10"
                     android:inputType="numberDecimal"
                     android:padding="6dp"
-                    android:textColor="@android:color/background_light"
+                    android:textColor="#3b3b34"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -143,15 +140,77 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_spinner"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:padding="2dp">
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/outTextCalculation"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="#3b3b34"
+                    android:padding="5dp"
+                    android:layout_weight="1"
+                    android:textSize="18dp"
+                    android:lineSpacingExtra="7dp" />
+                <TextView
+                    android:id="@+id/resultCalculation"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="2dp"
+                    android:textColor="#3b3b34"
+                    android:layout_weight="1.3"
+                    android:padding="5dp"
+                    android:textSize="18dp"
+                    android:lineSpacingExtra="7dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:weightSum="100"
+                android:layout_marginBottom="4dp">
+                <TextView
+                    android:text="@string/LastSaved"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    android:paddingTop="4dp"
+                    android:layout_weight="70"
+                    android:paddingBottom="4dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#151d25" />
+                <Button
+                    android:text="@string/clearSaved"
+                    android:id="@+id/btnClearSaved"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_weight="30"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="0dp"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
+                    android:background="@drawable/z_btn_grey" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="1dp"
+                android:background="@drawable/bg_spinner"
+                android:layout_marginBottom="15dp">
+                <TextView
+                    android:id="@+id/resultSaved"
+                    android:text="Side length = 24 cm"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:textSize="18dp"
+                    android:padding="6dp"
+                    android:textColor="#000" />
             </LinearLayout>
 
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+</ScrollView>

@@ -18,7 +18,7 @@ class CircleCalculatorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_circle_calculator)
-        getSupportActionBar()?.hide()
+        //getSupportActionBar()?.hide()
 
         var adapter = ArrayAdapter.createFromResource(this, R.array.Drop, R.layout.spinner_select)
         adapter.setDropDownViewResource(R.layout.spinner_drop)
@@ -28,8 +28,9 @@ class CircleCalculatorActivity : AppCompatActivity() {
 
             override fun onItemSelected(adapterView: AdapterView<*>, view: View, position: Int, id: Long) {
                 val item = adapterView.getItemAtPosition(position)
-                if (item != null) {
-                    //Toast.makeText(this@CircleCalculatorActivity, item.toString(), Toast.LENGTH_SHORT).show()
+                var count = adapterView.selectedItemPosition
+                if (count != null) {
+                    Toast.makeText(this@CircleCalculatorActivity, count.toString(), Toast.LENGTH_SHORT).show()
                 }
                 //Toast.makeText(this@CircleCalculatorActivity, "Selected", Toast.LENGTH_SHORT).show()
             }

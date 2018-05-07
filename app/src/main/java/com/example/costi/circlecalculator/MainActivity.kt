@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        getSupportActionBar()?.hide()
+        //getSupportActionBar()?.hide()
 
         btnStart.setOnClickListener{
             var intent = Intent(this, CircleCalculatorActivity::class.java)
