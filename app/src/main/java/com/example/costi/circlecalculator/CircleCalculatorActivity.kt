@@ -19,7 +19,7 @@ class CircleCalculatorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_circle_calculator)
-        
+
         SelectTypeMethodToCalculate()
 
         btnClearAll.setOnClickListener { inputValue.text = null }
