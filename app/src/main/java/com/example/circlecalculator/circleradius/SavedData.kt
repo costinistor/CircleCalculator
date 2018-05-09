@@ -1,11 +1,8 @@
-package com.example.costi.circlecalculator
+package com.example.circlecalculator.circleradius
 
 
-import android.app.Application
-import android.os.Environment
 import android.content.Context
 import android.widget.TextView
-import java.io.File
 
 /**
  * Created by Costi on 5/8/2018.
@@ -21,7 +18,7 @@ fun LoadSavedData(context: Context):String{
         fis.close()
         return String(ase)
     }catch(e: Exception){
-        return "null"
+        return ""
     }
 }
 

@@ -1,6 +1,4 @@
-package com.example.costi.circlecalculator
-
-import android.provider.Settings.Global.getString
+package com.example.circlecalculator.circleradius
 
 /**
  * Created by Costi on 3/16/2018.

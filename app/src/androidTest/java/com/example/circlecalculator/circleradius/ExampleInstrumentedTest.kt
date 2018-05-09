@@ -1,4 +1,4 @@
-package com.example.costi.circlecalculator
+package com.example.circlecalculator.circleradius
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

@@ -1,4 +1,4 @@
-package com.example.costi.circlecalculator
+package com.example.circlecalculator.circleradius
 
 import android.os.Build
 import android.support.v7.app.AppCompatActivity

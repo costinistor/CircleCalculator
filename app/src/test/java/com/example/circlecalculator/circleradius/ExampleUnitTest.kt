@@ -1,4 +1,4 @@
-package com.example.costi.circlecalculator
+package com.example.circlecalculator.circleradius
 
 import org.junit.Test
 
