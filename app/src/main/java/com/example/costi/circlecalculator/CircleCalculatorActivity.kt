@@ -1,5 +1,6 @@
 package com.example.costi.circlecalculator
 
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -16,14 +17,19 @@ class CircleCalculatorActivity : AppCompatActivity() {
 
     var count = 0
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_circle_calculator)
 
         SelectTypeMethodToCalculate()
 
+        resultSaved.text = LoadSavedData(this)
+
         btnClearAll.setOnClickListener { inputValue.text = null }
         btnCalculate.setOnClickListener { GetCalculations() }
+        btnSave.setOnClickListener { SaveData() }
+        btnClearSaved.setOnClickListener { ClearSavedData() }
     }
 
     fun SelectTypeMethodToCalculate(){
@@ -46,8 +52,15 @@ class CircleCalculatorActivity : AppCompatActivity() {
                 // TODO Auto-generated method stub
             }
         }
+    }
 
-        var name: String = getString(R.string.circle_info)
+    fun SaveData(){
+        SaveDatafile(this, resultSaved)
+    }
+
+    fun ClearSavedData(){
+        savedResult = ""
+        SaveDatafile(this, resultSaved)
     }
 
     fun GetCalculations(){
@@ -72,6 +85,11 @@ class CircleCalculatorActivity : AppCompatActivity() {
 
                     outTextCalculation.text = circumferenceName() + "\n" + diameterName() + "\n" + areaName();
                     resultCalculation.text = totalResult
+
+                    savedResult = spinMethod.selectedItem.toString() + ": " + inputValue.text + "\n" + "\n" +
+                            circumferenceName() + " = " + resultCircumference.convertResult() + "\n" +
+                            diameterName() + " = " + resultDiameter.convertResult() + "\n" +
+                            areaName() + " = " + resultArea.convertResult()
                 }
             }
 
