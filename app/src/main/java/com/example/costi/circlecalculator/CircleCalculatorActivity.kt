@@ -13,14 +13,15 @@ import android.widget.AdapterView.OnItemSelectedListener
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import android.content.Intent
-
-
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
 
 
 class CircleCalculatorActivity : AppCompatActivity() {
 
     var count = 0
     var totalResult = ""
+    var mInterstitialAd: InterstitialAd? = null
 
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +32,7 @@ class CircleCalculatorActivity : AppCompatActivity() {
 
         resultSaved.text = LoadSavedData(this)
 
-        btnExit.setOnClickListener { this.finishAffinity() }
+        btnExitApp.setOnClickListener { this.finishAffinity() }
         btnClearAll.setOnClickListener { inputValue.text = null }
         btnCalculate.setOnClickListener { GetCalculations() }
         btnSave.setOnClickListener { SaveData() }
@@ -40,6 +41,14 @@ class CircleCalculatorActivity : AppCompatActivity() {
         btnRate.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, android.net.Uri.parse("market://details?id=com.circlecalculator.circleradius")))
         }
+
+        //MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713")
+
+        adsView.loadAd(AdRequest.Builder().build())
+
+        mInterstitialAd = InterstitialAd(this)
+        mInterstitialAd?.adUnitId = getString(R.string.interstitial_ad)
+
     }
 
     fun SelectTypeMethodToCalculate(){
@@ -82,13 +91,7 @@ class CircleCalculatorActivity : AppCompatActivity() {
         dcm.roundingMode = RoundingMode.HALF_EVEN
 
         if(!inputValue.text.isNullOrEmpty()){
-            var value: Double = 25.0
-            try {
-                value = inputValue.text.toString().toDouble()
-            }catch (e: Exception){
-
-                Toast.makeText(this@CircleCalculatorActivity, "Something wrong val", Toast.LENGTH_SHORT).show()
-            }
+            var value = inputValue.text.toString().toDouble()
 
             when(count){
                 0 -> radiusMethod(dcm, value)
@@ -167,5 +170,34 @@ class CircleCalculatorActivity : AppCompatActivity() {
     fun diameterName():String = getString(R.string.diameterCircle)
     fun areaName():String = getString(R.string.areaCircle)
 
+    //Admob ads
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (mInterstitialAd!!.isLoaded)
+        {
+            mInterstitialAd?.show()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!mInterstitialAd!!.isLoaded)
+        {
+            RequestNewInterstitial()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (adsView != null)
+        {
+            adsView.destroy()
+        }
+    }
+
+    fun RequestNewInterstitial(){
+        mInterstitialAd?.loadAd(AdRequest.Builder().build())
+    }
+    //End Admob
 
 }

@@ -2,7 +2,7 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textColor="#131209"
+    android:textColor="#3b3b34"
     android:text="Macosu"
     android:textSize="18dp"
     android:padding="8dp"

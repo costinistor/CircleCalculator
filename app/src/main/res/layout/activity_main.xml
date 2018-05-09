@@ -33,19 +33,21 @@
                 android:background="@drawable/btn_main"
                 android:text="Circle Calculator"
                 android:textColor="@android:color/background_light"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
             <Button
-                android:id="@+id/btnExit"
+                android:id="@+id/btnExitApp"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/btn_main"
                 android:text="Exit"
                 android:textColor="@android:color/background_light"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"

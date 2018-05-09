@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.costi.circlecalculator.CircleCalculatorActivity">
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adsView"
+        ads:adUnitId="@string/banner_ad"
+        ads:adSize="SMART_BANNER"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
         <LinearLayout
@@ -21,7 +34,7 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/btnExit"
+                    android:id="@+id/btnExitApp"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:background="@android:color/transparent"
@@ -53,7 +66,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_weight="1"
                 android:text="@string/circle_info"
-                android:textColor="#3b3b34" />
+                android:textColor="#3b3b34"
+                android:textSize="16sp" />
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -72,7 +86,8 @@
                 android:layout_marginTop="3dp"
                 android:layout_weight="1"
                 android:text="Select a method"
-                android:textColor="#352356" />
+                android:textColor="#352356"
+                android:textSize="15sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -116,7 +131,8 @@
                     android:layout_marginRight="7dp"
                     android:background="@drawable/z_btn_grey"
                     android:text="Save"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp" />
 
                 <Button
                     android:id="@+id/btnClearAll"
@@ -124,7 +140,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/z_btn_grey"
                     android:text="Clear"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp" />
 
                 <Space
                     android:layout_width="0dp"
@@ -139,7 +156,8 @@
                     android:paddingLeft="18dp"
                     android:paddingRight="18dp"
                     android:text="Calculate"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -154,21 +172,22 @@
                     android:id="@+id/outTextCalculation"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textColor="#3b3b34"
-                    android:padding="5dp"
                     android:layout_weight="1"
-                    android:textSize="18dp"
-                    android:lineSpacingExtra="7dp" />
+                    android:lineSpacingExtra="7dp"
+                    android:padding="5dp"
+                    android:textColor="#3b3b34"
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/resultCalculation"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="2dp"
-                    android:textColor="#3b3b34"
                     android:layout_weight="1.3"
+                    android:lineSpacingExtra="7dp"
                     android:padding="5dp"
-                    android:textSize="18dp"
-                    android:lineSpacingExtra="7dp" />
+                    android:textColor="#3b3b34"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -178,18 +197,19 @@
                 android:layout_marginTop="10dp"
                 android:weightSum="100"
                 android:layout_marginBottom="4dp">
+
                 <TextView
-                    android:text="@string/LastSaved"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:textSize="17dp"
-                    android:textStyle="bold"
-                    android:paddingTop="4dp"
+                    android:layout_marginTop="5dp"
                     android:layout_weight="70"
                     android:paddingBottom="4dp"
-                    android:layout_marginTop="5dp"
-                    android:textColor="#151d25" />
+                    android:paddingLeft="10dp"
+                    android:paddingTop="4dp"
+                    android:text="@string/LastSaved"
+                    android:textColor="#3d3d34"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/btnClearSaved"
@@ -202,7 +222,8 @@
                     android:paddingRight="0dp"
                     android:paddingTop="0dp"
                     android:text="@string/clearSaved"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"
@@ -219,8 +240,9 @@
                     android:padding="6dp"
                     android:text="Side length = 24 cm"
                     android:textColor="#3b3b34"
-                    android:textSize="18dp" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
         </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

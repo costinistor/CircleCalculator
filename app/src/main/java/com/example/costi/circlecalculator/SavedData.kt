@@ -11,7 +11,6 @@ import java.io.File
  * Created by Costi on 5/8/2018.
  */
 var savedResult:String = ""
-val path = Environment.DIRECTORY_DOCUMENTS
 var file:String = "circleSave.txt"
 
 fun LoadSavedData(context: Context):String{

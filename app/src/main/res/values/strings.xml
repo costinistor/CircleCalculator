@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">CircleCalculator</string>
+    <string name="app_name">Circle Calculator</string>
     <string name="circle_info">Calculates the area, circumference, radius or diameter of circle.</string>
+    <string name="banner_ad">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="interstitial_ad">ca-app-pub-3940256099942544/1033173712</string>
 
     <!--    Main menu     -->
     <string name="nameStairCalculator">Circle Calculator</string>
