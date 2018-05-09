@@ -170,7 +170,6 @@ class CircleCalculatorActivity : AppCompatActivity() {
     fun diameterName():String = getString(R.string.diameterCircle)
     fun areaName():String = getString(R.string.areaCircle)
 
-    //Admob ads
     override fun onBackPressed() {
         super.onBackPressed()
         if (mInterstitialAd!!.isLoaded)
@@ -198,6 +197,5 @@ class CircleCalculatorActivity : AppCompatActivity() {
     fun RequestNewInterstitial(){
         mInterstitialAd?.loadAd(AdRequest.Builder().build())
     }
-    //End Admob
 
 }

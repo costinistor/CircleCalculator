@@ -87,7 +87,7 @@
                 android:layout_weight="1"
                 android:text="Select a method"
                 android:textColor="#352356"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -132,7 +132,7 @@
                     android:background="@drawable/z_btn_grey"
                     android:text="Save"
                     android:textColor="@color/colorAccent"
-                    android:textSize="16sp" />
+                    android:textSize="15sp" />
 
                 <Button
                     android:id="@+id/btnClearAll"
@@ -141,7 +141,7 @@
                     android:background="@drawable/z_btn_grey"
                     android:text="Clear"
                     android:textColor="@color/colorAccent"
-                    android:textSize="16sp" />
+                    android:textSize="15sp" />
 
                 <Space
                     android:layout_width="0dp"
@@ -157,7 +157,7 @@
                     android:paddingRight="18dp"
                     android:text="Calculate"
                     android:textColor="@color/colorAccent"
-                    android:textSize="16sp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
@@ -223,7 +223,7 @@
                     android:paddingTop="0dp"
                     android:text="@string/clearSaved"
                     android:textColor="@color/colorAccent"
-                    android:textSize="16sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"
