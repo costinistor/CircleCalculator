@@ -7,7 +7,7 @@ import java.util.*
  * Created by Costi on 5/7/2018.
  */
 
-fun String.convertDecimal(): String{
+fun String.getDecimalComma(): String{
     var decimalSign = DecimalFormatSymbols(Locale.getDefault())
     var co: Char = decimalSign.decimalSeparator
 
@@ -16,7 +16,7 @@ fun String.convertDecimal(): String{
     return v
 }
 
-fun String.convertResult(): String{
+fun String.getDecimalPoint(): String{
     var v = this
     if(v.contains(',')) v = v.replace(',', '.')
     return  v

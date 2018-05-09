@@ -41,9 +41,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnExit.setOnClickListener{
-            //this.finishAffinity()
-            writeToFile("Bureb", this)
-            writeFile("config.txt", "La soare vara")
+            this.finishAffinity()
+//            writeToFile("Bureb", this)
+//            writeFile("config.txt", "La soare vara")
             }
 //            try{
 //                val filename = "myfile.txt"

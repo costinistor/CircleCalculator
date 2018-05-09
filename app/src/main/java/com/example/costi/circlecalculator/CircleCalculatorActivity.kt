@@ -1,8 +1,9 @@
 package com.example.costi.circlecalculator
 
-import android.content.Context
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.annotation.RequiresApi
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -11,13 +12,17 @@ import android.widget.Toast
 import android.widget.AdapterView.OnItemSelectedListener
 import java.math.RoundingMode
 import java.text.DecimalFormat
+import android.content.Intent
+
+
 
 
 class CircleCalculatorActivity : AppCompatActivity() {
 
     var count = 0
+    var totalResult = ""
 
-
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_circle_calculator)
@@ -26,10 +31,15 @@ class CircleCalculatorActivity : AppCompatActivity() {
 
         resultSaved.text = LoadSavedData(this)
 
+        btnExit.setOnClickListener { this.finishAffinity() }
         btnClearAll.setOnClickListener { inputValue.text = null }
         btnCalculate.setOnClickListener { GetCalculations() }
         btnSave.setOnClickListener { SaveData() }
         btnClearSaved.setOnClickListener { ClearSavedData() }
+
+        btnRate.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, android.net.Uri.parse("market://details?id=com.circlecalculator.circleradius")))
+        }
     }
 
     fun SelectTypeMethodToCalculate(){
@@ -68,36 +78,88 @@ class CircleCalculatorActivity : AppCompatActivity() {
     }
 
     fun CalculateCircle(){
-        var dcm = DecimalFormat("#.##")
+        val dcm = DecimalFormat("#.##")
         dcm.roundingMode = RoundingMode.HALF_EVEN
 
         if(!inputValue.text.isNullOrEmpty()){
-            var value: Double = inputValue.text.toString().toDouble()
+            var value: Double = 25.0
+            try {
+                value = inputValue.text.toString().toDouble()
+            }catch (e: Exception){
 
-
-            when(count){
-                0 -> {
-                    var resultArea = dcm.format(Math.PI * Math.pow(value, 2.0))
-                    var resultCircumference = dcm.format(2 * Math.PI * value)
-                    var resultDiameter = dcm.format(value * 2)
-                    var totalResult = resultCircumference.toString() + "\n" + resultDiameter.toString() + "\n" + resultArea.toString()
-
-
-                    outTextCalculation.text = circumferenceName() + "\n" + diameterName() + "\n" + areaName();
-                    resultCalculation.text = totalResult
-
-                    savedResult = spinMethod.selectedItem.toString() + ": " + inputValue.text + "\n" + "\n" +
-                            circumferenceName() + " = " + resultCircumference.convertResult() + "\n" +
-                            diameterName() + " = " + resultDiameter.convertResult() + "\n" +
-                            areaName() + " = " + resultArea.convertResult()
-                }
+                Toast.makeText(this@CircleCalculatorActivity, "Something wrong val", Toast.LENGTH_SHORT).show()
             }
 
+            when(count){
+                0 -> radiusMethod(dcm, value)
+                1 -> diameterMethod(dcm, value)
+                2 -> circumferenceMethod(dcm, value)
+                3 -> areaMethod(dcm, value)
+            }
+
+            resultCalculation.text = totalResult.getDecimalPoint()
 
         }else{
-            Toast.makeText(this@CircleCalculatorActivity, "E gol", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@CircleCalculatorActivity, "Please provide a value", Toast.LENGTH_SHORT).show()
         }
+    }
 
+    private fun radiusMethod(dcm:DecimalFormat, value:Double) {
+        var resultArea = dcm.format(Math.PI * Math.pow(value, 2.0))
+        var resultCircumference = dcm.format(2 * Math.PI * value)
+        var resultDiameter = dcm.format(value * 2)
+
+        totalResult = resultCircumference + "\n" + resultDiameter + "\n" + resultArea
+        outTextCalculation.text = circumferenceName() + "\n" + diameterName() + "\n" + areaName();
+
+        savedResult = spinMethod.selectedItem.toString() + ": " + inputValue.text + "\n" + "\n" +
+                circumferenceName() + " = " + resultCircumference.getDecimalPoint() + "\n" +
+                diameterName() + " = " + resultDiameter.getDecimalPoint() + "\n" +
+                areaName() + " = " + resultArea.getDecimalPoint()
+    }
+
+    private fun diameterMethod(dcm:DecimalFormat, value:Double){
+        var resultRadius = dcm.format(value / 2)
+        var resultArea = dcm.format(Math.PI * Math.pow(value / 2, 2.0))
+        var resultCircumference = dcm.format(Math.PI * value)
+
+        totalResult = resultRadius + "\n" + resultArea + "\n" + resultCircumference
+        outTextCalculation.text = radiusName() + "\n" + areaName() + "\n" + circumferenceName()
+
+        savedResult = spinMethod.selectedItem.toString() + ": " + inputValue.text + "\n" + "\n" +
+                radiusName() + " = " + resultRadius.getDecimalPoint() + "\n" +
+                areaName() + " = " + resultArea.getDecimalPoint() + "\n" +
+                circumferenceName() + " = " + resultCircumference.getDecimalPoint()
+    }
+
+    private fun circumferenceMethod(dcm:DecimalFormat, value:Double){
+        val radius = value / (2 * Math.PI)
+        val resultDiameter = dcm.format(radius * 2)
+        val resultArea = dcm.format(Math.PI * Math.pow(radius, 2.0))
+        val resultRadius = dcm.format(radius)
+
+        totalResult = resultRadius + "\n" + resultDiameter + "\n" + resultArea
+        outTextCalculation.text = radiusName() + "\n" + diameterName() + "\n" + areaName()
+
+        savedResult = spinMethod.selectedItem.toString() + ": " + inputValue.text + "\n" + "\n" +
+                radiusName() + " = " + resultRadius.getDecimalPoint() + "\n" +
+                diameterName() + " = " + resultDiameter.getDecimalPoint() + "\n" +
+                areaName() + " = " + resultArea.getDecimalPoint()
+    }
+
+    private fun areaMethod(dcm:DecimalFormat, value:Double){
+        val radius = Math.sqrt(value / Math.PI)
+        val resultDiameter = dcm.format(radius * 2)
+        val resultCircumference = dcm.format(2 * Math.PI * radius)
+        val resultRadius = dcm.format(radius)
+
+        totalResult = resultRadius + "\n" + resultDiameter + "\n" + resultCircumference
+        outTextCalculation.text = radiusName() + "\n" + diameterName() + "\n" + circumferenceName()
+
+        savedResult = spinMethod.selectedItem.toString() + ": " + inputValue.text + "\n" + "\n" +
+                radiusName() + " = " + resultRadius.getDecimalPoint() + "\n" +
+                diameterName() + " = " + resultDiameter.getDecimalPoint() + "\n" +
+                circumferenceName() + " = " + resultCircumference.getDecimalPoint()
     }
 
     fun radiusName():String = getString(R.string.radiusCircle)
