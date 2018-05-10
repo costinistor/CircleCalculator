@@ -8,8 +8,8 @@ import java.util.*
  */
 
 fun String.getDecimalComma(): String{
-    var decimalSign = DecimalFormatSymbols(Locale.getDefault())
-    var co: Char = decimalSign.decimalSeparator
+    val decimalSign = DecimalFormatSymbols(Locale.getDefault())
+    val co: Char = decimalSign.decimalSeparator
 
     var v = this
     if(co == ',') v = v.replace('.', ',')

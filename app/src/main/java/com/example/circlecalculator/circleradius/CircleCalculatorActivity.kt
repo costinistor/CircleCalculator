@@ -91,7 +91,7 @@ class CircleCalculatorActivity : AppCompatActivity() {
         dcm.roundingMode = RoundingMode.HALF_EVEN
 
         if(!inputValue.text.isNullOrEmpty()){
-            var value = inputValue.text.toString().toDouble()
+            val value = inputValue.text.toString().toDouble()
 
             when(count){
                 0 -> radiusMethod(dcm, value)
@@ -108,12 +108,12 @@ class CircleCalculatorActivity : AppCompatActivity() {
     }
 
     private fun radiusMethod(dcm:DecimalFormat, value:Double) {
-        var resultArea = dcm.format(Math.PI * Math.pow(value, 2.0))
-        var resultCircumference = dcm.format(2 * Math.PI * value)
-        var resultDiameter = dcm.format(value * 2)
+        val resultArea = dcm.format(Math.PI * Math.pow(value, 2.0))
+        val resultCircumference = dcm.format(2 * Math.PI * value)
+        val resultDiameter = dcm.format(value * 2)
 
         totalResult = resultCircumference + "\n" + resultDiameter + "\n" + resultArea
-        outTextCalculation.text = circumferenceName() + "\n" + diameterName() + "\n" + areaName();
+        outTextCalculation.text = circumferenceName() + "\n" + diameterName() + "\n" + areaName()
 
         savedResult = spinMethod.selectedItem.toString() + ": " + inputValue.text + "\n" + "\n" +
                 circumferenceName() + " = " + resultCircumference.getDecimalPoint() + "\n" +
@@ -122,9 +122,9 @@ class CircleCalculatorActivity : AppCompatActivity() {
     }
 
     private fun diameterMethod(dcm:DecimalFormat, value:Double){
-        var resultRadius = dcm.format(value / 2)
-        var resultArea = dcm.format(Math.PI * Math.pow(value / 2, 2.0))
-        var resultCircumference = dcm.format(Math.PI * value)
+        val resultRadius = dcm.format(value / 2)
+        val resultArea = dcm.format(Math.PI * Math.pow(value / 2, 2.0))
+        val resultCircumference = dcm.format(Math.PI * value)
 
         totalResult = resultRadius + "\n" + resultArea + "\n" + resultCircumference
         outTextCalculation.text = radiusName() + "\n" + areaName() + "\n" + circumferenceName()
@@ -165,10 +165,10 @@ class CircleCalculatorActivity : AppCompatActivity() {
                 circumferenceName() + " = " + resultCircumference.getDecimalPoint()
     }
 
-    fun radiusName():String = getString(R.string.radiusCircle)
-    fun circumferenceName():String = getString(R.string.circumferenceCircle)
-    fun diameterName():String = getString(R.string.diameterCircle)
-    fun areaName():String = getString(R.string.areaCircle)
+    private fun radiusName():String = getString(R.string.radiusCircle)
+    private fun circumferenceName():String = getString(R.string.circumferenceCircle)
+    private fun diameterName():String = getString(R.string.diameterCircle)
+    private fun areaName():String = getString(R.string.areaCircle)
 
     override fun onBackPressed() {
         super.onBackPressed()

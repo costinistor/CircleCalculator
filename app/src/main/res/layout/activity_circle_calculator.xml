@@ -67,7 +67,7 @@
                 android:layout_weight="1"
                 android:text="@string/circle_info"
                 android:textColor="#3b3b34"
-                android:textSize="16sp" />
+                android:textSize="17sp" />
 
             <ImageView
                 android:id="@+id/imageView3"

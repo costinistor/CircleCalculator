@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         btnStart.setOnClickListener{
-            var intent = Intent(this, CircleCalculatorActivity::class.java)
+            val intent = Intent(this, CircleCalculatorActivity::class.java)
             startActivity(intent)
 
             if (mInterstitialAd!!.isLoaded)
