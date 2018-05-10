@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:layout_weight="1"
-                android:text="Select a method"
+                android:text="@string/selectElement"
                 android:textColor="#352356"
                 android:textSize="14sp" />
 
@@ -130,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="7dp"
                     android:background="@drawable/z_btn_grey"
-                    android:text="Save"
+                    android:text="@string/btn_save"
                     android:textColor="@color/colorAccent"
                     android:textSize="15sp" />
 
@@ -139,7 +139,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/z_btn_grey"
-                    android:text="Clear"
+                    android:text="@string/btn_clear"
                     android:textColor="@color/colorAccent"
                     android:textSize="15sp" />
 
@@ -155,7 +155,7 @@
                     android:background="@drawable/z_btn_grey"
                     android:paddingLeft="18dp"
                     android:paddingRight="18dp"
-                    android:text="Calculate"
+                    android:text="@string/btn_calculate"
                     android:textColor="@color/colorAccent"
                     android:textSize="15sp" />
 
@@ -221,7 +221,7 @@
                     android:paddingLeft="0dp"
                     android:paddingRight="0dp"
                     android:paddingTop="0dp"
-                    android:text="@string/clearSaved"
+                    android:text="@string/btn_clear_saved"
                     android:textColor="@color/colorAccent"
                     android:textSize="15sp" />
             </LinearLayout>

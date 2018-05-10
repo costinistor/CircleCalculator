@@ -11,11 +11,11 @@
     <string name="nameExit">Exit</string>
 
     <!--    Universal     -->
-    <string name="ButonSave">Save</string>
-    <string name="ButonClear">Clear</string>
-    <string name="ButonCalculate">Calculate</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_clear">Clear</string>
+    <string name="btn_calculate">Calculate</string>
     <string name="LastSaved">Last saved</string>
-    <string name="clearSaved">Clear saved</string>
+    <string name="btn_clear_saved">Clear saved</string>
 
     <!--    Settings     -->
     <string name="titleSettings">Settings</string>
