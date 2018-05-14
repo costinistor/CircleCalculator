@@ -41,7 +41,11 @@ class CircleCalculatorActivity : AppCompatActivity() {
         btnRate.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, android.net.Uri.parse("market://details?id=com.circlecalculator.circleradius")))
         }
+        try{
 
+        }catch(e: Exception){
+
+        }
         //MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713")
 
         adsView.loadAd(AdRequest.Builder().build())
@@ -58,17 +62,27 @@ class CircleCalculatorActivity : AppCompatActivity() {
 
         spinMethod.onItemSelectedListener = object : OnItemSelectedListener {
 
+
             override fun onItemSelected(adapterView: AdapterView<*>, view: View, position: Int, id: Long) {
                 //val item = adapterView.getItemAtPosition(position)
-                count = adapterView.selectedItemPosition
-                inputValue.text = null
+                try{
+                    count = adapterView.selectedItemPosition
+                }catch(e: Exception){
+
+                }
+                try{
+                    inputValue.text.clear()
+                }catch(e: Exception){
+
+                }
+
 //                if (count != null) {
 //                    Toast.makeText(this@CircleCalculatorActivity, count.toString(), Toast.LENGTH_SHORT).show()
 //                }
             }
 
             override fun onNothingSelected(adapterView: AdapterView<*>) {
-                // TODO Auto-generated method stub
+
             }
         }
     }
