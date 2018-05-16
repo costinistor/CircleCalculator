@@ -61,12 +61,10 @@ class CircleCalculatorActivity : AppCompatActivity() {
         spinMethod.adapter = adapter
 
         spinMethod.onItemSelectedListener = object : OnItemSelectedListener {
-
-
-            override fun onItemSelected(adapterView: AdapterView<*>, view: View, position: Int, id: Long) {
+            override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 //val item = adapterView.getItemAtPosition(position)
                 try{
-                    count = adapterView.selectedItemPosition
+                    count = adapterView!!.selectedItemPosition
                 }catch(e: Exception){
 
                 }
@@ -81,7 +79,7 @@ class CircleCalculatorActivity : AppCompatActivity() {
 //                }
             }
 
-            override fun onNothingSelected(adapterView: AdapterView<*>) {
+            override fun onNothingSelected(adapterView: AdapterView<*>?) {
 
             }
         }
