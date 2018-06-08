@@ -16,7 +16,7 @@ fun String.getDecimalComma(): String{
     return v
 }
 
-fun String.getDecimalPoint(): String{
+fun String.getDecimalDot(): String{
     var v = this
     if(v.contains(',')) v = v.replace(',', '.')
     return  v

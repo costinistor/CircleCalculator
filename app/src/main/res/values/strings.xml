@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Circle Calculator</string>
     <string name="circle_info">Calculates the area, circumference, radius or diameter of circle.</string>
+
     <string name="banner_ad">ca-app-pub-3940256099942544/6300978111</string>
     <string name="interstitial_ad">ca-app-pub-3940256099942544/1033173712</string>
+
 
     <!--    Main menu     -->
     <string name="nameStairCalculator">Circle Calculator</string>
@@ -16,6 +18,8 @@
     <string name="btn_calculate">Calculate</string>
     <string name="LastSaved">Last saved</string>
     <string name="btn_clear_saved">Clear saved</string>
+    
+    <string name="title_setting">Select your decimal numbers</string>
 
     <!--    Settings     -->
     <string name="titleSettings">Settings</string>
@@ -44,5 +48,8 @@
     <string name="areaCircle">Area (S)</string>
 
     <string name="isoscelRightTriangleDesc">Calculates the area, circumference, radius or diameter of a circle.</string>
+    <string name="policy_1">We care about your privacy and data security.  We keep this app free by showing ads.</string>
+    <string name="policy_2">Can we continue to use your data to tailor ads for you?</string>
+    <string name="policy_3">Our parteners will collect data and use a unique identifier on your device to show you ads. For more information read our:</string>
 
 </resources>

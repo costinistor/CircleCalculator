@@ -5,34 +5,37 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.annotation.RequiresApi
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.activity_circle_calculator.*
-import android.widget.Toast
 import android.widget.AdapterView.OnItemSelectedListener
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import android.content.Intent
+import android.widget.*
+import com.example.circlecalculator.circleradius.Interfaces.PassValue
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
 
 
 class CircleCalculatorActivity : AppCompatActivity() {
 
+
     var count = 0
-    var totalResult = ""
     var mInterstitialAd: InterstitialAd? = null
+    var decimalSave = "decimalSave.txt"
+    val fileSave:String = "circleSave.txt"
+    var resultBuilder: ResultViewBuilder? = null
 
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_circle_calculator)
+        resultBuilder = ResultViewBuilder(this)
 
         SelectTypeMethodToCalculate()
 
-        resultSaved.text = LoadSavedData(this)
+        resultSaved.text = LoadSavedData(this, fileSave, "")
 
-        btnExitApp.setOnClickListener { this.finishAffinity() }
+        btnExitApp.setOnClickListener { openDialogSetting() }
         btnClearAll.setOnClickListener { inputValue.text = null }
         btnCalculate.setOnClickListener { GetCalculations() }
         btnSave.setOnClickListener { SaveData() }
@@ -41,11 +44,7 @@ class CircleCalculatorActivity : AppCompatActivity() {
         btnRate.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, android.net.Uri.parse("market://details?id=com.circlecalculator.circleradius")))
         }
-        try{
 
-        }catch(e: Exception){
-
-        }
         //MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713")
 
         adsView.loadAd(AdRequest.Builder().build())
@@ -55,24 +54,24 @@ class CircleCalculatorActivity : AppCompatActivity() {
 
     }
 
+    fun openDialogSetting(){
+        val transaction = fragmentManager.beginTransaction()
+        val setting = dialogSetting()
+        setting.show(transaction, "setting")
+    }
+
     fun SelectTypeMethodToCalculate(){
-        var adapter = ArrayAdapter.createFromResource(this, R.array.Drop, R.layout.spinner_select)
+        val adapter = ArrayAdapter.createFromResource(this, R.array.Drop, R.layout.spinner_select)
         adapter.setDropDownViewResource(R.layout.spinner_drop)
         spinMethod.adapter = adapter
 
         spinMethod.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 //val item = adapterView.getItemAtPosition(position)
-                try{
+
                     count = adapterView!!.selectedItemPosition
-                }catch(e: Exception){
-
-                }
-                try{
                     inputValue.text.clear()
-                }catch(e: Exception){
 
-                }
 
 //                if (count != null) {
 //                    Toast.makeText(this@CircleCalculatorActivity, count.toString(), Toast.LENGTH_SHORT).show()
@@ -80,18 +79,17 @@ class CircleCalculatorActivity : AppCompatActivity() {
             }
 
             override fun onNothingSelected(adapterView: AdapterView<*>?) {
-
             }
         }
     }
 
     fun SaveData(){
-        SaveDatafile(this, resultSaved)
+        SaveDatafile(this, resultSaved, fileSave)
     }
 
     fun ClearSavedData(){
         savedResult = ""
-        SaveDatafile(this, resultSaved)
+        SaveDatafile(this, resultSaved, fileSave)
     }
 
     fun GetCalculations(){
@@ -99,7 +97,8 @@ class CircleCalculatorActivity : AppCompatActivity() {
     }
 
     fun CalculateCircle(){
-        val dcm = DecimalFormat("#.##")
+        val decimalPoints = LoadSavedData(this, decimalSave, "#.##")
+        val dcm = DecimalFormat(decimalPoints)
         dcm.roundingMode = RoundingMode.HALF_EVEN
 
         if(!inputValue.text.isNullOrEmpty()){
@@ -112,8 +111,6 @@ class CircleCalculatorActivity : AppCompatActivity() {
                 3 -> areaMethod(dcm, value)
             }
 
-            resultCalculation.text = totalResult.getDecimalPoint()
-
         }else{
             Toast.makeText(this@CircleCalculatorActivity, "Please provide a value", Toast.LENGTH_SHORT).show()
         }
@@ -124,13 +121,15 @@ class CircleCalculatorActivity : AppCompatActivity() {
         val resultCircumference = dcm.format(2 * Math.PI * value)
         val resultDiameter = dcm.format(value * 2)
 
-        totalResult = resultCircumference + "\n" + resultDiameter + "\n" + resultArea
-        outTextCalculation.text = circumferenceName() + "\n" + diameterName() + "\n" + areaName()
+        resultLayout.removeAllViews()
+        resultBuilder!!.ResultView(resultLayout, circumferenceName(), resultCircumference)
+        resultBuilder!!.ResultView(resultLayout, diameterName(), resultDiameter)
+        resultBuilder!!.ResultView(resultLayout, areaName(), resultArea)
 
         savedResult = spinMethod.selectedItem.toString() + ": " + inputValue.text + "\n" + "\n" +
-                circumferenceName() + " = " + resultCircumference.getDecimalPoint() + "\n" +
-                diameterName() + " = " + resultDiameter.getDecimalPoint() + "\n" +
-                areaName() + " = " + resultArea.getDecimalPoint()
+                circumferenceName() + " = " + resultCircumference.getDecimalDot() + "\n" +
+                diameterName() + " = " + resultDiameter.getDecimalDot() + "\n" +
+                areaName() + " = " + resultArea.getDecimalDot()
     }
 
     private fun diameterMethod(dcm:DecimalFormat, value:Double){
@@ -138,13 +137,15 @@ class CircleCalculatorActivity : AppCompatActivity() {
         val resultArea = dcm.format(Math.PI * Math.pow(value / 2, 2.0))
         val resultCircumference = dcm.format(Math.PI * value)
 
-        totalResult = resultRadius + "\n" + resultArea + "\n" + resultCircumference
-        outTextCalculation.text = radiusName() + "\n" + areaName() + "\n" + circumferenceName()
+        resultLayout.removeAllViews()
+        resultBuilder!!.ResultView(resultLayout, radiusName(), resultRadius)
+        resultBuilder!!.ResultView(resultLayout, areaName(), resultArea)
+        resultBuilder!!.ResultView(resultLayout, circumferenceName(), resultCircumference)
 
         savedResult = spinMethod.selectedItem.toString() + ": " + inputValue.text + "\n" + "\n" +
-                radiusName() + " = " + resultRadius.getDecimalPoint() + "\n" +
-                areaName() + " = " + resultArea.getDecimalPoint() + "\n" +
-                circumferenceName() + " = " + resultCircumference.getDecimalPoint()
+                radiusName() + " = " + resultRadius.getDecimalDot() + "\n" +
+                areaName() + " = " + resultArea.getDecimalDot() + "\n" +
+                circumferenceName() + " = " + resultCircumference.getDecimalDot()
     }
 
     private fun circumferenceMethod(dcm:DecimalFormat, value:Double){
@@ -153,13 +154,15 @@ class CircleCalculatorActivity : AppCompatActivity() {
         val resultArea = dcm.format(Math.PI * Math.pow(radius, 2.0))
         val resultRadius = dcm.format(radius)
 
-        totalResult = resultRadius + "\n" + resultDiameter + "\n" + resultArea
-        outTextCalculation.text = radiusName() + "\n" + diameterName() + "\n" + areaName()
+        resultLayout.removeAllViews()
+        resultBuilder!!.ResultView(resultLayout, radiusName(), resultRadius)
+        resultBuilder!!.ResultView(resultLayout, diameterName(), resultDiameter)
+        resultBuilder!!.ResultView(resultLayout, areaName(), resultArea)
 
         savedResult = spinMethod.selectedItem.toString() + ": " + inputValue.text + "\n" + "\n" +
-                radiusName() + " = " + resultRadius.getDecimalPoint() + "\n" +
-                diameterName() + " = " + resultDiameter.getDecimalPoint() + "\n" +
-                areaName() + " = " + resultArea.getDecimalPoint()
+                radiusName() + " = " + resultRadius.getDecimalDot() + "\n" +
+                diameterName() + " = " + resultDiameter.getDecimalDot() + "\n" +
+                areaName() + " = " + resultArea.getDecimalDot()
     }
 
     private fun areaMethod(dcm:DecimalFormat, value:Double){
@@ -168,13 +171,15 @@ class CircleCalculatorActivity : AppCompatActivity() {
         val resultCircumference = dcm.format(2 * Math.PI * radius)
         val resultRadius = dcm.format(radius)
 
-        totalResult = resultRadius + "\n" + resultDiameter + "\n" + resultCircumference
-        outTextCalculation.text = radiusName() + "\n" + diameterName() + "\n" + circumferenceName()
+        resultLayout.removeAllViews()
+        resultBuilder!!.ResultView(resultLayout, radiusName(), resultRadius)
+        resultBuilder!!.ResultView(resultLayout, diameterName(), resultDiameter)
+        resultBuilder!!.ResultView(resultLayout, circumferenceName(), resultCircumference)
 
         savedResult = spinMethod.selectedItem.toString() + ": " + inputValue.text + "\n" + "\n" +
-                radiusName() + " = " + resultRadius.getDecimalPoint() + "\n" +
-                diameterName() + " = " + resultDiameter.getDecimalPoint() + "\n" +
-                circumferenceName() + " = " + resultCircumference.getDecimalPoint()
+                radiusName() + " = " + resultRadius.getDecimalDot() + "\n" +
+                diameterName() + " = " + resultDiameter.getDecimalDot() + "\n" +
+                circumferenceName() + " = " + resultCircumference.getDecimalDot()
     }
 
     private fun radiusName():String = getString(R.string.radiusCircle)
@@ -209,5 +214,6 @@ class CircleCalculatorActivity : AppCompatActivity() {
     fun RequestNewInterstitial(){
         mInterstitialAd?.loadAd(AdRequest.Builder().build())
     }
+
 
 }

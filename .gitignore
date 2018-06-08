@@ -9,3 +9,4 @@
 .externalNativeBuild
 *.apk
 app/release/output.json
+app/src/main/res/values/strings.xml
