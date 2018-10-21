@@ -1,4 +1,4 @@
-package com.example.circlecalculator.circleradius
+package com.example.circlecalculator.circleradius.utils
 
 
 import android.content.Context
@@ -11,6 +11,7 @@ var savedResult:String = ""
 var saveDecimal:String = "#.##"
 var policy = ""
 //val file:String = "circleSave.txt"
+
 
 fun LoadSavedData(context: Context, file: String, default: String):String{
 
@@ -42,3 +43,4 @@ fun SavePolicy(context:Context, file: String){
     fo.write(policy.toByteArray())
     fo.close()
 }
+

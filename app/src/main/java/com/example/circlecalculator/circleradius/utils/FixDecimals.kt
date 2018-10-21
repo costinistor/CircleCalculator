@@ -1,4 +1,4 @@
-package com.example.circlecalculator.circleradius
+package com.example.circlecalculator.circleradius.utils
 
 import java.text.DecimalFormatSymbols
 import java.util.*

@@ -1,4 +1,4 @@
-package com.example.circlecalculator.circleradius
+package com.example.circlecalculator.circleradius.dialogs
 
 import android.content.Context
 import android.content.Intent
@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import com.example.circlecalculator.circleradius.R
 import kotlinx.android.synthetic.main.dialog_policy.view.*
 
 /**
@@ -22,9 +23,9 @@ class dialogPolicy : DialogFragment() {
     }
     var mOnOptionSelected: OnOptionSelected? = null
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        val view = inflater!!.inflate(R.layout.dialog_policy, container, false)
+        val view = inflater.inflate(R.layout.dialog_policy, container, false)
 
         view.btnDecline.setOnClickListener {
             mOnOptionSelected!!.onPolicyDecline(true)
@@ -34,13 +35,11 @@ class dialogPolicy : DialogFragment() {
         view.btnAccept.setOnClickListener {
             try {
 //                policy = "true"
-//                SavePolicy(view.context, "policy.txt")
+//                SavePolicy(mView.context, "policy.txt")
                 mOnOptionSelected!!.onPolicyAccept(true)
                 dismiss()
             }catch(e: Exception){
-
             }
-
         }
 
         view.tvPolicy.setOnClickListener {

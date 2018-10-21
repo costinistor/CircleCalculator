@@ -1,17 +1,24 @@
-package com.example.circlecalculator.circleradius
+package com.example.circlecalculator.circleradius.activity
 
 import android.content.Intent
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.annotation.RequiresApi
-import com.example.circlecalculator.circleradius.Interfaces.PassValue
+import com.example.circlecalculator.circleradius.*
+import com.example.circlecalculator.circleradius.dialogs.dialogPolicy
+import com.example.circlecalculator.circleradius.utils.LoadSavedData
+import com.example.circlecalculator.circleradius.utils.SavePolicy
+import com.example.circlecalculator.circleradius.utils.policy
+import com.google.android.gms.ads.AdRequest
+
+import com.google.android.gms.ads.InterstitialAd
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity(), dialogPolicy.OnOptionSelected {
 
-    //var mInterstitialAd: InterstitialAd? = null
+    var mInterstitialAd: InterstitialAd? = null
 
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,18 +29,18 @@ class MainActivity : AppCompatActivity(), dialogPolicy.OnOptionSelected {
             val intent = Intent(this, CircleCalculatorActivity::class.java)
             startActivity(intent)
 
-//            if (mInterstitialAd!!.isLoaded)
-//            {
-//                mInterstitialAd?.show()
-//            }
+            if (mInterstitialAd!!.isLoaded)
+            {
+                mInterstitialAd?.show()
+            }
         }
 
         btnExitApp.setOnClickListener {
             this.finishAffinity()
         }
 
-        //mInterstitialAd = InterstitialAd(this)
-        //mInterstitialAd?.adUnitId = getString(R.string.interstitial_ad)
+        mInterstitialAd = InterstitialAd(this)
+        mInterstitialAd?.adUnitId = getString(R.string.interstitial_ad)
 
         openDialogPolicy()
     }
@@ -47,17 +54,17 @@ class MainActivity : AppCompatActivity(), dialogPolicy.OnOptionSelected {
         }
     }
 
-//    override fun onResume() {
-//        super.onResume()
-//        if (!mInterstitialAd!!.isLoaded)
-//        {
-//            RequestNewInterstitial()
-//        }
-//    }
+    override fun onResume() {
+        super.onResume()
+        if (!mInterstitialAd!!.isLoaded)
+        {
+            RequestNewInterstitial()
+        }
+    }
 
-//    fun RequestNewInterstitial(){
-//        mInterstitialAd?.loadAd(AdRequest.Builder().build())
-//    }
+    fun RequestNewInterstitial(){
+        mInterstitialAd?.loadAd(AdRequest.Builder().build())
+    }
 
     override fun onPolicyAccept(isAccepted: Boolean) {
         if(isAccepted) {

@@ -16,3 +16,9 @@ package com.example.circlecalculator.circleradius.Model
 //        return Realm.getInstance(config)
 //    }
 //}
+
+class ral{
+    val oooo = 8
+
+
+}
